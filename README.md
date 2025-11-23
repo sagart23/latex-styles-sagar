@@ -27,7 +27,7 @@ Clone this repository **directly inside your local TEXMF tree** so LaTeX can fin
 ```bash
 mkdir -p ~/texmf/tex/latex
 cd ~/texmf/tex/latex
-git clone https://github.com/<YOUR_USERNAME>/latex-styles-sagar.git
+git clone https://github.com/sagart23/latex-styles-sagar.git
 texhash ~/texmf    # only needed the first time or when new .sty files are added
 ````
 
