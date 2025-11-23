@@ -129,9 +129,9 @@ This helps track which document was built with which version.
 
 ## 📄 License
 
-Choose one option and add it here:
+This project is licensed under the **MIT License**.
 
-* **MIT License** (recommended if you want open use)
+You are free to use, copy, modify, and distribute the `.sty` files in personal or commercial projects, as long as attribution to **Sagar Tamhankar** is maintained.
 
 ---
 
