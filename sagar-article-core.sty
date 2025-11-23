@@ -1,0 +1,75 @@
+% sagar-article-core.sty
+% Core article/notes layout for Sagar's teaching material
+% Copyright (c) 2025 Sagar Tamhankar
+% MIT License — see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+% -------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sagar-article-core}[2025/11/23 v1.0 Sagar article/notes core style]
+
+% -------------------------------------------------------
+% Encoding & fonts
+% -------------------------------------------------------
+\RequirePackage[T1]{fontenc}
+
+% Default to Latin Modern (good general-purpose font)
+\RequirePackage{lmodern}
+
+% (If you want Times-like or Palatino-like fonts for a
+%  specific document, you can still load newtxtext/newtxmath
+%  or newpxtext/newpxmath in that document's preamble.)
+
+% -------------------------------------------------------
+% Enhanced typography & spacing
+% -------------------------------------------------------
+\RequirePackage[final,babel=true]{microtype}
+\microtypesetup{
+    protrusion = true,
+    expansion  = true,
+    tracking   = true,
+    kerning    = true,
+    spacing    = true
+}
+\UseMicrotypeSet[protrusion]{basicmath}
+
+\RequirePackage{setspace}
+% Comfortable line spacing for reading notes
+\setstretch{1.2}
+
+% Paragraph layout
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+\raggedbottom   % more flexible page breaks for article/notes
+
+% -------------------------------------------------------
+% Page layout & geometry (notes/article profile)
+% -------------------------------------------------------
+\RequirePackage[
+    left           = 2.5cm,
+    right          = 2.5cm,
+    top            = 3cm,
+    bottom         = 3cm,
+    headheight     = 15pt,
+    headsep        = 1cm,
+    footskip       = 1cm,
+    marginparwidth = 2cm,
+    marginparsep   = 0.5cm
+]{geometry}
+
+% -------------------------------------------------------
+% Utility packages often used in notes
+% -------------------------------------------------------
+\RequirePackage{todonotes} % \todo{...} margin notes
+\RequirePackage{tfrupee}   % Indian Rupee symbol (also in sagar-math, safe to load twice)
+\RequirePackage{qrcode}    % \qrcode[height=...]{URL or text}
+\RequirePackage{comment}   % \begin{comment} ... \end{comment}
+
+% NOTE:
+% - Headers/footers (fancyhdr) are left to the document preamble,
+%   since they vary by subject/school/exam.
+% - Hyperref is also best configured per-document, so is not loaded here.
+%
+% End of sagar-article-core.sty
+% -------------------------------------------------------
+\endinput

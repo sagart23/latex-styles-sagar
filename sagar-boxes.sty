@@ -1,0 +1,266 @@
+% sagar-boxes.sty
+% Common tcolorbox environments and inline highlight commands
+% for Sagar's exams, notes, and worksheets
+% Copyright (c) 2025 Sagar Tamhankar
+% MIT License — see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+% -----------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sagar-boxes}[2025/11/23 v1.0 Sagar tcolorbox styles]
+
+% -----------------------------------------------------------
+% Colors and highlighting
+% -----------------------------------------------------------
+\RequirePackage[table]{xcolor}
+
+% Core color palette
+\definecolor{primaryblue}{RGB}{0,102,153}
+\definecolor{secondarygreen}{RGB}{51,153,102}
+\definecolor{accentorange}{RGB}{255,153,51}
+\definecolor{warningred}{RGB}{204,51,51}
+\definecolor{backgroundgray}{RGB}{248,249,250}
+
+% -----------------------------------------------------------
+% tcolorbox setup
+% -----------------------------------------------------------
+\RequirePackage[most,breakable]{tcolorbox}
+\tcbuselibrary{skins,raster,theorems}
+
+% -----------------------------------------------------------
+% Definition Box - Enhanced Professional Style
+% -----------------------------------------------------------
+\newtcolorbox{definition}[2][]{
+    enhanced,
+    colback=primaryblue!5,
+    colframe=primaryblue!80!black,
+    colbacktitle=primaryblue!80!black,
+    coltitle=white,
+    title={\textbf{Definition: #2}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=primaryblue!80!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Theorem Box
+% -----------------------------------------------------------
+\newtcolorbox{theorem}[2][]{
+    enhanced,
+    colback=secondarygreen!5,
+    colframe=secondarygreen!80!black,
+    colbacktitle=secondarygreen!80!black,
+    coltitle=white,
+    title={\textbf{Theorem: #2}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=secondarygreen!80!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Note Box - Enhanced
+% -----------------------------------------------------------
+\newtcolorbox{noteBox}[1][]{
+    enhanced,
+    colback=accentorange!10,
+    colframe=accentorange!80!black,
+    colbacktitle=accentorange!80!black,
+    coltitle=white,
+    title={\textbf{Note}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=accentorange!80!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Example Box
+% -----------------------------------------------------------
+\newtcolorbox{example}[2][]{
+    enhanced,
+    colback=backgroundgray,
+    colframe=gray!60!black,
+    colbacktitle=gray!60!black,
+    coltitle=white,
+    title={\textbf{Example: #2}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=gray!60!black,
+        sharp corners
+    },
+    sharp corners,
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Warning / Important Box
+% -----------------------------------------------------------
+\newtcolorbox{important}[1][]{
+    enhanced,
+    colback=warningred!10,
+    colframe=warningred!80!black,
+    colbacktitle=warningred!80!black,
+    coltitle=white,
+    title={\textbf{Important}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=warningred!80!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Error Box - Common Mistakes
+% -----------------------------------------------------------
+\newtcolorbox{errorbox}[1][]{
+    enhanced,
+    colback=warningred!5,
+    colframe=warningred!70!black,
+    colbacktitle=warningred!70!black,
+    coltitle=white,
+    title={\textbf{Common Error}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=warningred!70!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Solution Box
+% -----------------------------------------------------------
+\newtcolorbox{solutionbox}[1][]{
+    enhanced,
+    colback=secondarygreen!5,
+    colframe=secondarygreen!70!black,
+    colbacktitle=secondarygreen!70!black,
+    coltitle=white,
+    title={\textbf{Solution}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=secondarygreen!70!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Teaching Tip Box
+% -----------------------------------------------------------
+\newtcolorbox{teachingtip}[1][]{
+    enhanced,
+    colback=accentorange!5,
+    colframe=accentorange!70!black,
+    colbacktitle=accentorange!70!black,
+    coltitle=white,
+    title={\textbf{Teaching Tip}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=accentorange!70!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+% -----------------------------------------------------------
+% Inline highlight commands
+% -----------------------------------------------------------
+\newcommand{\highlight}[1]{\textcolor{primaryblue}{\textbf{#1}}}
+\newcommand{\emphred}[1]{\textcolor{warningred!80!black}{\textbf{#1}}}
+\newcommand{\emphblue}[1]{\textcolor{primaryblue!80!black}{\textbf{#1}}}
+\newcommand{\emphgreen}[1]{\textcolor{secondarygreen!80!black}{\textbf{#1}}}
+\newcommand{\mistake}[1]{\textcolor{warningred}{\textbf{ERROR: #1}}}
+\newcommand{\correct}[1]{\textcolor{secondarygreen}{\textbf{CORRECT: #1}}}
+
+% -----------------------------------------------------------
+% End of sagar-boxes.sty
+% -----------------------------------------------------------
+\endinput

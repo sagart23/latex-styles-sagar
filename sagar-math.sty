@@ -1,0 +1,56 @@
+% sagar-math.sty
+% Common math setup for Sagar's exams, notes, worksheets
+% Copyright (c) 2025 Sagar Tamhankar
+% MIT License — see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+% ------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sagar-math}[2025/11/23 v1.0 Sagar common math package]
+
+% ------------------------------------------------------
+% Core AMS math packages
+% ------------------------------------------------------
+% If you want fleqn globally, you can pass it in the document:
+%   \documentclass[fleqn]{article}
+% or load amsmath with options before sagar-math if needed.
+\RequirePackage{amsmath}   % core enhanced math
+\RequirePackage{amssymb}   % extra symbols
+\RequirePackage{amsfonts}  % extra fonts
+\RequirePackage{mathtools} % fixes & extensions to amsmath
+
+% ------------------------------------------------------
+% Physics-style notation
+% ------------------------------------------------------
+\RequirePackage{physics}   % \dv, \pdv, \qty, \vb, bra-ket, etc.
+
+% ------------------------------------------------------
+% SI units and number formatting
+% ------------------------------------------------------
+\RequirePackage{siunitx}
+
+% You can tweak siunitx defaults here if you like.
+% These are safe, sensible settings – comment out or edit as needed.
+\sisetup{
+  detect-all,
+  per-mode = symbol,
+  separate-uncertainty = true,
+  exponent-product = \cdot,
+  output-decimal-marker = {.}
+}
+
+% ------------------------------------------------------
+% Extra math operators and symbols
+% ------------------------------------------------------
+% cosecant operator (to match your existing documents)
+\DeclareMathOperator\cosec{cosec}
+
+% ------------------------------------------------------
+% Currency symbol for Indian Rupee
+% ------------------------------------------------------
+\RequirePackage{tfrupee}
+
+% ------------------------------------------------------
+% End of sagar-math.sty
+% ------------------------------------------------------
+\endinput
