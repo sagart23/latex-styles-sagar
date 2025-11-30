@@ -1,0 +1,47 @@
+% sagar-graphics-core.sty
+% Essential graphics for geometry diagrams and calculus graphs
+% Copyright (c) 2025 Sagar Tamhankar
+% MIT License — see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+% ------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sagar-graphics-core}[2025/11/30 v1.0 Core graphics for math/physics]
+
+% ------------------------------------------------------
+% Core TikZ and plotting packages
+% ------------------------------------------------------
+\RequirePackage{tikz}
+\RequirePackage{tkz-euclide}      % Geometry diagrams
+\RequirePackage{pgfplots}         % Function graphs
+\RequirePackage{pgfplotstable}    % Data tables for plotting
+
+% ------------------------------------------------------
+% Essential TikZ libraries
+% ------------------------------------------------------
+\usetikzlibrary{
+  arrows.meta,         % Modern arrow tips
+  calc,                % Coordinate calculations
+  angles,              % Angle marking (geometry)
+  shapes.geometric,    % Circles, polygons, etc.
+  positioning,         % Relative positioning (above=of, etc.)
+  patterns            % Hatching, dots, lines
+}
+
+% ------------------------------------------------------
+% PGFPlots configuration
+% ------------------------------------------------------
+\pgfplotsset{compat=1.18}
+
+% Essential pgfplots library for calculus (area under curves)
+\usepgfplotslibrary{fillbetween}
+
+% ------------------------------------------------------
+% Modern arrow style default
+% ------------------------------------------------------
+\tikzset{>=Stealth}
+
+% ------------------------------------------------------
+% End of sagar-graphics-core.sty
+% ------------------------------------------------------
+\endinput

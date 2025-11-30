@@ -1,0 +1,53 @@
+% sagar-graphics-extended.sty
+% Extended graphics for specialized diagrams (circuits, decorations, etc.)
+% Copyright (c) 2025 Sagar Tamhankar
+% MIT License — see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+% ------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sagar-graphics-extended}[2025/11/30 v1.0 Extended graphics]
+
+% ------------------------------------------------------
+% Load core graphics first
+% ------------------------------------------------------
+\RequirePackage{sagar-graphics-core}
+
+% ------------------------------------------------------
+% Circuit diagrams (for electricity topics)
+% ------------------------------------------------------
+% NOTE: Assumes siunitx is loaded (via sagar-math.sty)
+\RequirePackage[americanvoltages,fulldiodes,siunitx]{circuitikz}
+
+% ------------------------------------------------------
+% Additional TikZ libraries (specialized use)
+% ------------------------------------------------------
+\usetikzlibrary{
+  arrows,                    % Legacy arrow styles
+  shadows.blur,              % Drop shadows and blur effects
+  math,                      % Mathematical expressions in TikZ
+  decorations.pathmorphing,  % Wavy lines, zigzag, etc.
+  backgrounds,               % Background layers
+  fit                        % Fit nodes around content
+}
+
+% ------------------------------------------------------
+% Additional PGFPlots libraries
+% ------------------------------------------------------
+\usepgfplotslibrary{statistics}  % Box plots, histograms, etc.
+
+% ------------------------------------------------------
+% Notes
+% ------------------------------------------------------
+% Load this package when you need:
+% - Circuit diagrams (circuitikz)
+% - Statistical plots (box plots, histograms)
+% - Decorative effects (wavy lines, shadows)
+% - Advanced node fitting and backgrounds
+%
+% For most geometry and calculus work, sagar-graphics-core
+% is sufficient and compiles faster.
+%
+% End of sagar-graphics-extended.sty
+% ------------------------------------------------------
+\endinput

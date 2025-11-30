@@ -1,0 +1,143 @@
+% sagar-exam-extended.sty
+% Advanced exam boxes and formatting features
+% Professional headers, section boxes, grade tables
+% Copyright (c) 2025 Sagar Tamhankar
+% MIT License – see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+% --------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sagar-exam-extended}[2025/11/30 v1.0 Sagar exam extended features]
+
+% --------------------------------------------------
+% Load dependencies
+% --------------------------------------------------
+\RequirePackage{sagar-exam-core}  % Geometry, basic setup
+\RequirePackage{sagar-boxes}      % Color definitions
+
+% --------------------------------------------------
+% Additional colors for professional exam layout
+% --------------------------------------------------
+\definecolor{examblue}{RGB}{0,70,140}
+\definecolor{headerblue}{RGB}{0,90,160}
+
+% --------------------------------------------------
+% Professional Exam Header Box
+% --------------------------------------------------
+\newtcolorbox{examheaderbox}{
+    enhanced,
+    colback = white,
+    colframe = examblue,
+    boxrule = 2pt,
+    arc = 3mm,
+    drop shadow = {black!50!white},
+    left = 1em,
+    right = 1em,
+    top = 1em,
+    bottom = 1em,
+    fontupper = \sffamily
+}
+
+% --------------------------------------------------
+% Instructions Box - Professional Style
+% --------------------------------------------------
+\newtcolorbox{instructionsbox}{
+    enhanced,
+    colback = backgroundgray!30,
+    colframe = headerblue,
+    colbacktitle = headerblue,
+    coltitle = white,
+    title = {\sffamily\bfseries Instructions},
+    fonttitle = \sffamily\bfseries\large,
+    attach boxed title to top center = {yshift=-3mm},
+    boxed title style = {
+        enhanced,
+        size = small,
+        colframe = headerblue,
+        arc = 2mm
+    },
+    arc = 2mm,
+    boxrule = 1.5pt,
+    drop shadow = {black!20!white},
+    breakable,
+    left = 1em,
+    right = 1em,
+    top = 1.5em,
+    bottom = 1em,
+}
+
+% --------------------------------------------------
+% Section Header Box
+% --------------------------------------------------
+\newtcolorbox{sectionbox}[2]{
+    enhanced,
+    colback = primaryblue!10,
+    colframe = primaryblue!80!black,
+    colbacktitle = primaryblue!80!black,
+    coltitle = white,
+    title = {\sffamily\bfseries\large SECTION #1},
+    fonttitle = \sffamily\bfseries\large,
+    subtitle style = {
+        fontupper = \sffamily\itshape,
+        colback   = primaryblue!5
+    },
+    center title,
+    arc = 2mm,
+    boxrule = 1pt,
+    drop shadow = {black!20!white},
+    left = 1em,
+    right = 1em,
+    top = 0.8em,
+    bottom = 0.8em,
+    after title = {\\\normalsize\itshape #2}
+}
+
+% --------------------------------------------------
+% Question Paper Content Box
+% --------------------------------------------------
+\newtcolorbox{questionbox}{
+    enhanced,
+    colframe = gray!40,
+    frame hidden,
+    boxrule = 1pt,
+    arc = 1mm,
+    left = 1em,
+    right = 1em,
+    top = 1em,
+    bottom = 1em,
+    breakable,
+    overlay = {
+        \draw[line width=1pt, gray!40, rounded corners=1mm]
+            (frame.north west) rectangle (frame.south east);
+    },
+    opacityback = 0,
+}
+
+% --------------------------------------------------
+% Grade Table Box
+% --------------------------------------------------
+\newtcolorbox{gradetablebox}{
+    enhanced,
+    colback = backgroundgray!20,
+    colframe = examblue,
+    boxrule = 1pt,
+    arc = 2mm,
+    left = 0.5em,
+    right = 0.5em,
+    top = 0.5em,
+    bottom = 0.5em,
+    center upper
+}
+
+% --------------------------------------------------
+% Professional section header command
+% --------------------------------------------------
+\newcommand{\sectionheader}[2]{%
+    \begin{sectionbox}{#1}{#2}\end{sectionbox}%
+    \vspace{1em}%
+}
+
+% --------------------------------------------------
+% End of sagar-exam-extended.sty
+% --------------------------------------------------
+\endinput

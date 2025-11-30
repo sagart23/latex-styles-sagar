@@ -6,31 +6,29 @@
 % ------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sagar-math}[2025/11/23 v1.0 Sagar common math package]
+\ProvidesPackage{sagar-math}[2025/11/30 v1.1 Sagar common math package]
 
 % ------------------------------------------------------
 % Core AMS math packages
 % ------------------------------------------------------
-% If you want fleqn globally, you can pass it in the document:
-%   \documentclass[fleqn]{article}
-% or load amsmath with options before sagar-math if needed.
 \RequirePackage{amsmath}   % core enhanced math
-\RequirePackage{amssymb}   % extra symbols
-\RequirePackage{amsfonts}  % extra fonts
+\RequirePackage{amssymb}   % extra symbols (also loads amsfonts)
 \RequirePackage{mathtools} % fixes & extensions to amsmath
 
 % ------------------------------------------------------
-% Physics-style notation
+% Custom math commands (lightweight alternatives)
 % ------------------------------------------------------
-\RequirePackage{physics}   % \dv, \pdv, \qty, \vb, bra-ket, etc.
+% Uncomment if you need these specific commands:
+% \newcommand{\dv}[2]{\frac{d#1}{d#2}}           % ordinary derivative
+% \newcommand{\ddv}[2]{\frac{d^2#1}{d#2^2}}     % second derivative
+% \newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}  % partial derivative
+% \renewcommand{\vec}[1]{\mathbf{#1}}           % bold vectors
 
 % ------------------------------------------------------
 % SI units and number formatting
 % ------------------------------------------------------
 \RequirePackage{siunitx}
 
-% You can tweak siunitx defaults here if you like.
-% These are safe, sensible settings – comment out or edit as needed.
 \sisetup{
   detect-all,
   per-mode = symbol,
@@ -42,11 +40,10 @@
 % ------------------------------------------------------
 % Extra math operators and symbols
 % ------------------------------------------------------
-% cosecant operator (to match your existing documents)
-\DeclareMathOperator\cosec{cosec}
+\DeclareMathOperator\cosec{cosec}  % Cosecant (common in Indian curriculum)
 
 % ------------------------------------------------------
-% Currency symbol for Indian Rupee
+% Indian Rupee symbol
 % ------------------------------------------------------
 \RequirePackage{tfrupee}
 
