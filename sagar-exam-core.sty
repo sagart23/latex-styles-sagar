@@ -54,17 +54,18 @@
 % Exam class customizations (for exam.cls)
 % --------------------------------------------------
 % Professional question formatting
-\@ifclassloaded{exam}{%
+\makeatletter
+\@ifclassloaded{exam}{
     \renewcommand{\questionlabel}{\sffamily\bfseries Q.\thequestion}
     \renewcommand{\partlabel}{\sffamily\bfseries(\thepartno)}
     \renewcommand{\subpartlabel}{\sffamily\bfseries\thesubpart.}
     
-    % Enhanced point display
     \pointsdroppedatright
     \marksnotpoints
     \pointformat{\sffamily\bfseries[\themarginpoints]}
     \setlength{\rightpointsmargin}{2.5cm}
 }{}
+\makeatother
 
 % --------------------------------------------------
 % Notes:
