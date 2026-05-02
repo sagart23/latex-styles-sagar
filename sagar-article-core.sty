@@ -32,7 +32,7 @@
     spacing    = true
 }
 \UseMicrotypeSet[protrusion]{basicmath}
-
+\RequirePackage{parskip}
 \RequirePackage{setspace}
 % Comfortable line spacing for reading notes
 \setstretch{1.2}
@@ -60,11 +60,18 @@
 % -------------------------------------------------------
 % Utility packages often used in notes
 % -------------------------------------------------------
-\RequirePackage{todonotes} % \todo{...} margin notes
+\RequirePackage[disable]{todonotes} % \todo{...} margin notes
 \RequirePackage{tfrupee}   % Indian Rupee symbol (also in sagar-math, safe to load twice)
 \RequirePackage{qrcode}    % \qrcode[height=...]{URL or text}
 \RequirePackage{comment}   % \begin{comment} ... \end{comment}
-
+\RequirePackage{iftex}
+\ifPDFTeX
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{lmodern}
+\else
+  % XeLaTeX / LuaLaTeX users
+  \RequirePackage{fontspec}
+\fi
 % NOTE:
 % - Headers/footers (fancyhdr) are left to the document preamble,
 %   since they vary by subject/school/exam.
