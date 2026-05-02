@@ -64,6 +64,18 @@
 \RequirePackage{tfrupee}   % Indian Rupee symbol (also in sagar-math, safe to load twice)
 \RequirePackage{qrcode}    % \qrcode[height=...]{URL or text}
 \RequirePackage{comment}   % \begin{comment} ... \end{comment}
+% -------------------------------------------------------
+% MODERN TABLE SUPPORT
+% -------------------------------------------------------
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{makecell}
+\RequirePackage{colortbl}
+\RequirePackage{longtable}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 \RequirePackage{iftex}
 \ifPDFTeX
   \RequirePackage[T1]{fontenc}
