@@ -93,10 +93,24 @@
 % ============================================================
 % SHORT USER-FRIENDLY ALIASES
 % ============================================================
-
 \newcommand{\trs}[1]{\teacheronly{#1}}
-\newcommand{\hint}[1]{\hintonly{#1}}
-\newcommand{\ans}[1]{\answeronly{#1}}
+
+\newcommand{\hint}[1]{%
+  \hintonly{%
+    \begin{noteBox}
+    #1
+    \end{noteBox}
+  }%
+}
+
+\newcommand{\ans}[1]{%
+  \answeronly{%
+    \begin{Mysolutionbox}
+    #1
+    \end{Mysolutionbox}
+  }%
+}
+
 % ============================================================
 % END
 % ============================================================
