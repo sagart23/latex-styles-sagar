@@ -112,6 +112,35 @@
 }
 
 % -----------------------------------------------------------
+% Hint Box - Enhanced
+% -----------------------------------------------------------
+\newtcolorbox{hintbox}[1][]{
+    enhanced,
+    colback=accentorange!10,
+    colframe=accentorange!80!black,
+    colbacktitle=accentorange!80!black,
+    coltitle=white,
+    title={\textbf{Hint}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=accentorange!80!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
+
+% -----------------------------------------------------------
 % Example Box
 % -----------------------------------------------------------
 \newtcolorbox{example}[2][]{
@@ -221,6 +250,35 @@
     breakable,
     #1
 }
+
+% -----------------------------------------------------------
+% Answer Box
+% -----------------------------------------------------------
+\newtcolorbox{Answer}[1][]{
+    enhanced,
+    colback=secondarygreen!5,
+    colframe=secondarygreen!70!black,
+    colbacktitle=secondarygreen!70!black,
+    coltitle=white,
+    title={\textbf{Answer}},
+    fonttitle=\sffamily\bfseries,
+    attach boxed title to top left={
+        xshift=0.5cm,
+        yshift=-3mm,
+        yshifttext=-1mm
+    },
+    boxed title style={
+        enhanced,
+        size=small,
+        colframe=secondarygreen!70!black,
+        sharp corners
+    },
+    sharp corners,
+    drop shadow={black!20!white},
+    breakable,
+    #1
+}
+
 
 % -----------------------------------------------------------
 % Teaching Tip Box
