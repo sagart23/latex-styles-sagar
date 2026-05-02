@@ -1,0 +1,87 @@
+% sagar-notes.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sagar-notes}[2026/05/02 Notes layout + flags]
+
+% ============================================================
+% REQUIRED PACKAGES
+% ============================================================
+
+\RequirePackage{enumitem}
+\RequirePackage{multicol}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{sectsty}
+\RequirePackage{bookmark}
+
+% ============================================================
+% SCHOOL / DEPARTMENT CONFIG (WITH DEFAULTS)
+% ============================================================
+
+% Default values
+\newcommand{\schoolname}{The Cathedral \& John Connon School}
+\newcommand{\schoolshort}{CAJCS}
+\newcommand{\departmentname}{Mathematics Department}
+
+% Combined setup (optional convenience)
+\newcommand{\setupschool}[3]{%
+  \setschool{#1}{#2}%
+  \setdepartment{#3}%
+}
+
+% ============================================================
+% HEADER & FOOTER SETUP
+% ============================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[LE]{\sffamily\bfseries\color{primaryblue}\leftmark}
+\fancyhead[RO]{\sffamily\bfseries\color{primaryblue}\rightmark}
+\fancyhead[LO,RE]{\sffamily\small \schoolname}
+
+\fancyfoot[LE,RO]{\sffamily\bfseries Page \thepage\ of \pageref{LastPage}}
+\fancyfoot[LO,RE]{\sffamily\small \departmentname}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{%
+  \hbox to\headwidth{%
+    \color{primaryblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% Fix section marks
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+% ============================================================
+% SECTION STYLING
+% ============================================================
+
+\sectionfont{\sffamily\Large\bfseries\color{primaryblue}}
+\subsectionfont{\sffamily\large\bfseries\color{secondarygreen!80!black}}
+\subsubsectionfont{\sffamily\normalsize\bfseries\color{gray!70!black}}
+
+% ============================================================
+% FLAGS SYSTEM
+% ============================================================
+
+\newif\ifteacher
+\newif\ifhint
+\newif\ifanswer
+
+% Default modes
+\teacherfalse
+\hintfalse
+\answerfalse
+
+% User-friendly modes
+\newcommand{\teachermode}{\teachertrue\answertrue\hinttrue}
+\newcommand{\studentmode}{\teacherfalse\answerfalse\hintfalse}
+
+% Conditional commands
+\newcommand{\teacheronly}[1]{\ifteacher #1\fi}
+\newcommand{\hintonly}[1]{\ifhint #1\fi}
+\newcommand{\answeronly}[1]{\ifanswer #1\fi}
+
+% ============================================================
+% END
+% ============================================================
+
+\endinput
