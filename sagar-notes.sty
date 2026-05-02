@@ -71,15 +71,32 @@
 \hintfalse
 \answerfalse
 
-% User-friendly modes
-\newcommand{\teachermode}{\teachertrue\answertrue\hinttrue}
-\newcommand{\studentmode}{\teacherfalse\answerfalse\hintfalse}
+% Modes
+\newcommand{\teachermode}{\teachertrue\hinttrue\answertrue}
+\newcommand{\studentmode}{\teacherfalse\hintfalse\answerfalse}
 
-% Conditional commands
+% Conditional logic
 \newcommand{\teacheronly}[1]{\ifteacher #1\fi}
-\newcommand{\hintonly}[1]{\ifhint #1\fi}
-\newcommand{\answeronly}[1]{\ifanswer #1\fi}
 
+\newcommand{\hintonly}[1]{%
+  \ifteacher #1\else
+    \ifhint #1\fi
+  \fi
+}
+
+\newcommand{\answeronly}[1]{%
+  \ifteacher #1\else
+    \ifanswer #1\fi
+  \fi
+}
+
+% ============================================================
+% SHORT USER-FRIENDLY ALIASES
+% ============================================================
+
+\newcommand{\trs}[1]{\teacheronly{#1}}
+\newcommand{\hint}[1]{\hintonly{#1}}
+\newcommand{\ans}[1]{\answeronly{#1}}
 % ============================================================
 % END
 % ============================================================
