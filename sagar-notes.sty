@@ -22,11 +22,10 @@
 \newcommand{\schoolshort}{CAJCS}
 \newcommand{\departmentname}{Mathematics Department}
 
-% Combined setup (optional convenience)
 \newcommand{\setupschool}[3]{%
-  \schoolname{#1}%
-  \schoolshort{#2}%
-  \departmentname{#3}%
+  \renewcommand{\schoolname}{#1}%
+  \renewcommand{\schoolshort}{#2}%
+  \renewcommand{\departmentname}{#3}%
 }
 
 % ============================================================
