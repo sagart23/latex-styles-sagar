@@ -1,0 +1,93 @@
+% exam-minimal.sty
+% Preamble package for the question paper — keeps everything the
+% document actually needs:
+%   (i)   \includegraphics (images/logos)
+%   (ii)  TikZ diagrams (+ tkz-euclide for geometry diagrams)
+%   (iii) \rupee currency symbol            -> tfrupee
+%   (iv)  \doublespacing                    -> setspace
+%   (v)   Clean typography                  -> microtype
+%   (vi)  exam.cls label & point formatting customizations
+% --------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{exam-minimal}[2026/07/11 v1.2 Minimal exam package]
+
+% --------------------------------------------------
+% (0) Core encoding & fonts
+% --------------------------------------------------
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+
+% --------------------------------------------------
+% (i) Graphics
+% --------------------------------------------------
+\RequirePackage{graphicx}
+
+% --------------------------------------------------
+% (ii) TikZ (diagrams) + tkz-euclide (geometry diagrams)
+% --------------------------------------------------
+\RequirePackage{tikz}
+\RequirePackage{tkz-euclide}
+
+\usetikzlibrary{
+  arrows.meta,               % modern arrow tips
+  calc,                       % coordinate arithmetic
+  angles,                     % angle marking
+  shapes.geometric,           % circles, polygons, etc.
+  positioning,                % relative node positioning
+  patterns,                   % hatching/fill patterns
+  intersections,               % point-of-intersection calculations
+  decorations.pathreplacing   % braces / measurement marks
+}
+
+% Default arrow style
+\tikzset{>=Stealth}
+
+% --------------------------------------------------
+% (iii) Indian Rupee symbol
+% --------------------------------------------------
+\RequirePackage{tfrupee}
+
+% --------------------------------------------------
+% Colors used by \hypersetup in the main document
+% (originally defined in sagar-boxes.sty)
+% --------------------------------------------------
+\RequirePackage{xcolor}
+\definecolor{primaryblue}{HTML}{1A5276}
+\definecolor{secondarygreen}{HTML}{1E8449}
+
+% --------------------------------------------------
+% (iv) Spacing package (for \doublespacing, \onehalfspacing)
+% --------------------------------------------------
+\RequirePackage{setspace}
+
+% --------------------------------------------------
+% (v) Typography & microtype
+% --------------------------------------------------
+\RequirePackage[final,babel=true]{microtype}
+\microtypesetup{
+    protrusion = true,
+    expansion  = true
+}
+\UseMicrotypeSet[protrusion]{basicmath}
+
+% --------------------------------------------------
+% (vi) Exam class customizations (for exam.cls)
+% --------------------------------------------------
+\makeatletter
+\@ifclassloaded{exam}{
+    \renewcommand{\questionlabel}{\sffamily\bfseries Q.\thequestion}
+    \renewcommand{\partlabel}{\sffamily\bfseries(\thepartno)}
+    \renewcommand{\subpartlabel}{\sffamily\bfseries\thesubpart.}
+
+    \pointsdroppedatright
+    \marksnotpoints
+    \pointformat{\sffamily\bfseries[\themarginpoints]}
+    \setlength{\rightpointsmargin}{2.5cm}
+}{}
+\makeatother
+
+% --------------------------------------------------
+% End of exam-minimal.sty
+% --------------------------------------------------
+\endinput
