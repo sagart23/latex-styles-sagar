@@ -1,0 +1,29 @@
+% sagar-graphics-extended.sty
+% Extended graphics: circuits, statistics plots, decorations
+% Copyright (c) 2025-2026 Sagar Tamhankar
+% MIT License -- see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+%
+% Load only when needed -- for plain geometry / calculus the core file
+% is enough and compiles faster.
+% ------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{sagar-graphics-extended}[2026/11/07 v2.0 Extended graphics]
+
+\RequirePackage{sagar-graphics-tikz-core}   % (v1.0 asked for a non-existent "sagar-graphics-core")
+\RequirePackage{siunitx}[2022/01/01]        % circuitikz labels use \SI-style units
+\RequirePackage[americanvoltages,fulldiodes,siunitx]{circuitikz}
+
+\usetikzlibrary{
+  shadows.blur,               % drop shadows / blur
+  math,                       % maths inside TikZ
+  decorations.pathmorphing,   % wavy lines, zigzag
+  backgrounds,                % background layers
+  fit                         % fit nodes around content
+}
+% (legacy "arrows" library dropped: superseded by arrows.meta in core)
+
+\@ifpackageloaded{pgfplots}{\usepgfplotslibrary{statistics}}{}  % box plots, histograms
+
+\endinput
