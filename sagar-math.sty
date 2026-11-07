@@ -1,50 +1,55 @@
 % sagar-math.sty
 % Common math setup for Sagar's exams, notes, worksheets
-% Copyright (c) 2025 Sagar Tamhankar
-% MIT License — see LICENSE file in repository
+% Copyright (c) 2025-2026 Sagar Tamhankar
+% MIT License -- see LICENSE file in repository
 % Repository: https://github.com/sagart23/latex-styles-sagar.git
 % ------------------------------------------------------
 
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sagar-math}[2025/11/30 v1.1 Sagar common math package]
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{sagar-math}[2026/11/07 v2.0 Sagar common math package]
+
+\newif\ifsagar@derivs
+\DeclareOption{derivs}{\sagar@derivstrue}   % lightweight \dv \ddv \pdv
+\ProcessOptions\relax
+
+\RequirePackage{sagar-base}      % fonts, colours, tables, multicol, \rupee
 
 % ------------------------------------------------------
-% Core AMS math packages
+% AMS math
 % ------------------------------------------------------
-\RequirePackage{amsmath}   % core enhanced math
-\RequirePackage{amssymb}   % extra symbols (also loads amsfonts)
-\RequirePackage{mathtools} % fixes & extensions to amsmath
+\RequirePackage{amsmath}         % core enhanced math
+\RequirePackage{amssymb}         % extra symbols (also loads amsfonts)
+\RequirePackage{mathtools}       % fixes & extensions to amsmath
 
 % ------------------------------------------------------
-% Custom math commands (lightweight alternatives)
+% SI units and number formatting (siunitx v3)
 % ------------------------------------------------------
-% Uncomment if you need these specific commands:
-% \newcommand{\dv}[2]{\frac{d#1}{d#2}}           % ordinary derivative
-% \newcommand{\ddv}[2]{\frac{d^2#1}{d#2^2}}     % second derivative
-% \newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}  % partial derivative
- \newcommand{\bvec}[1]{\mathbf{#1}}           % bold vectors
-
-% ------------------------------------------------------
-% SI units and number formatting
-% ------------------------------------------------------
-\RequirePackage{siunitx}
-
+\RequirePackage{siunitx}[2022/01/01]
 \sisetup{
-  detect-all,
-  output-decimal-marker = {.},
+  % modern replacement of the deprecated "detect-all"
+  mode                    = match,
+  propagate-math-font     = true,
+  reset-math-version      = false,
+  reset-text-family       = false,
+  reset-text-series       = false,
+  reset-text-shape        = false,
+  text-family-to-math     = true,
+  text-series-to-math     = true,
+  output-decimal-marker   = {.},
 }
 
 % ------------------------------------------------------
-% Extra math operators and symbols
+% Custom math commands
 % ------------------------------------------------------
-\DeclareMathOperator\cosec{cosec}  % Cosecant (common in Indian curriculum)
+\providecommand{\bvec}[1]{\mathbf{#1}}           % bold vectors
+\ifdefined\cosec\else
+  \DeclareMathOperator{\cosec}{cosec}            % cosecant (Indian curriculum)
+\fi
 
-% ------------------------------------------------------
-% Indian Rupee symbol
-% ------------------------------------------------------
-\RequirePackage{tfrupee}
+\ifsagar@derivs
+  \providecommand{\dv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+  \providecommand{\ddv}[2]{\frac{\mathrm{d}^{2}#1}{\mathrm{d}#2^{2}}}
+  \providecommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+\fi
 
-% ------------------------------------------------------
-% End of sagar-math.sty
-% ------------------------------------------------------
 \endinput
