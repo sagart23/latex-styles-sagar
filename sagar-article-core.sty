@@ -1,94 +1,58 @@
 % sagar-article-core.sty
 % Core article/notes layout for Sagar's teaching material
-% Copyright (c) 2025 Sagar Tamhankar
-% MIT License — see LICENSE file in repository
+% Copyright (c) 2025-2026 Sagar Tamhankar
+% MIT License -- see LICENSE file in repository
 % Repository: https://github.com/sagart23/latex-styles-sagar.git
+%
+% Option:  todos   show \todo{...} margin notes (default: hidden)
 % -------------------------------------------------------
 
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sagar-article-core}[2025/11/23 v1.0 Sagar article/notes core style]
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{sagar-article-core}[2026/11/07 v2.0 Sagar article/notes core style]
+
+\def\sagar@todoopt{disable}
+\DeclareOption{todos}{\def\sagar@todoopt{}}
+\ProcessOptions\relax
+
+\RequirePackage{sagar-base}      % fonts, microtype, setspace, tables, multicol, \rupee
 
 % -------------------------------------------------------
-% Encoding & fonts
+% Typography & spacing
 % -------------------------------------------------------
-\RequirePackage[T1]{fontenc}
-
-% Default to Latin Modern (good general-purpose font)
-\RequirePackage{lmodern}
-
-% (If you want Times-like or Palatino-like fonts for a
-%  specific document, you can still load newtxtext/newtxmath
-%  or newpxtext/newpxmath in that document's preamble.)
-
-% -------------------------------------------------------
-% Enhanced typography & spacing
-% -------------------------------------------------------
-\RequirePackage[final,babel=true]{microtype}
-\microtypesetup{
-    protrusion = true,
-    expansion  = true,
-    tracking   = true,
-    kerning    = true,
-    spacing    = true
-}
-\UseMicrotypeSet[protrusion]{basicmath}
+\ifPDFTeX        % tracking/kerning are pdfTeX-only microtype features
+  \microtypesetup{tracking=true, kerning=true}
+\fi
 \RequirePackage{parskip}
-\RequirePackage{setspace}
-% Comfortable line spacing for reading notes
-\setstretch{1.2}
-
-% Paragraph layout
+\setstretch{1.2}                 % comfortable line spacing for reading notes
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
-\raggedbottom   % more flexible page breaks for article/notes
+\raggedbottom                    % flexible page breaks for notes
 
 % -------------------------------------------------------
-% Page layout & geometry (notes/article profile)
+% Page layout (notes/article profile)
+% Use \geometry{...} in your document to change it
+% (a second \usepackage[...]{geometry} would be an option clash)
 % -------------------------------------------------------
-\RequirePackage[
-    left           = 2.5cm,
-    right          = 2.5cm,
-    top            = 3cm,
-    bottom         = 3cm,
-    headheight     = 15pt,
-    headsep        = 1cm,
-    footskip       = 1cm,
-    marginparwidth = 2cm,
-    marginparsep   = 0.5cm
-]{geometry}
+\RequirePackage{geometry}
+\geometry{
+  left           = 2.5cm,
+  right          = 2.5cm,
+  top            = 3cm,
+  bottom         = 3cm,
+  headheight     = 25pt,         % was 15pt: fancyhdr warned it was too small
+  headsep        = 1cm,
+  footskip       = 1cm,
+  marginparwidth = 2cm,
+  marginparsep   = 0.5cm
+}
 
 % -------------------------------------------------------
-% Utility packages often used in notes
+% Utilities
 % -------------------------------------------------------
-\RequirePackage[disable]{todonotes} % \todo{...} margin notes
-\RequirePackage{tfrupee}   % Indian Rupee symbol (also in sagar-math, safe to load twice)
-\RequirePackage{qrcode}    % \qrcode[height=...]{URL or text}
-\RequirePackage{comment}   % \begin{comment} ... \end{comment}
-% -------------------------------------------------------
-% MODERN TABLE SUPPORT
-% -------------------------------------------------------
-\RequirePackage{booktabs}
-\RequirePackage{tabularx}
-\RequirePackage{array}
-\RequirePackage{multirow}
-\RequirePackage{makecell}
-\RequirePackage{colortbl}
-\RequirePackage{longtable}
+\RequirePackage[\sagar@todoopt]{todonotes} % \todo{...}
+\RequirePackage{qrcode}                    % \qrcode[height=...]{URL}
+\RequirePackage{comment}                   % \begin{comment} ... \end{comment}
 
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
-\RequirePackage{iftex}
-\ifPDFTeX
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage{lmodern}
-\else
-  % XeLaTeX / LuaLaTeX users
-  \RequirePackage{fontspec}
-\fi
-% NOTE:
-% - Headers/footers (fancyhdr) are left to the document preamble,
-%   since they vary by subject/school/exam.
-% - Hyperref is also best configured per-document, so is not loaded here.
-%
-% End of sagar-article-core.sty
-% -------------------------------------------------------
+% Headers/footers (fancyhdr) -> sagar-notes.sty or your own preamble.
+% hyperref is configured per document (or by the sagar-notes class).
 \endinput
