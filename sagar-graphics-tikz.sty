@@ -1,0 +1,10 @@
+% sagar-graphics-tikz.sty -- compatibility shim for the all-in-one graphics file
+% named in the old README ("TikZ, pgfplots, circuitikz, tabularray, wrapfig").
+% New documents: use sagar-graphics-tikz-core (+ sagar-graphics-extended).
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{sagar-graphics-tikz}[2026/11/07 v2.0 compat shim -> core + extended]
+\RequirePackage{sagar-graphics-tikz-core}
+\RequirePackage{sagar-graphics-extended}
+\RequirePackage{wrapfig}
+\IfFileExists{tabularray.sty}{\RequirePackage{tabularray}}{}
+\endinput
