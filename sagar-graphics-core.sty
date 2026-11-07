@@ -1,0 +1,7 @@
+% sagar-graphics-core.sty -- compatibility shim (old name of sagar-graphics-tikz-core)
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{sagar-graphics-core}[2026/11/07 v2.0 compat shim -> sagar-graphics-tikz-core]
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{sagar-graphics-tikz-core}}
+\ProcessOptions\relax
+\RequirePackage{sagar-graphics-tikz-core}
+\endinput
