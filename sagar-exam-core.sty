@@ -1,84 +1,50 @@
 % sagar-exam-core.sty
-% Common exam layout, geometry, and tcolorbox setup
+% Common exam layout and exam.cls label/point formatting
 % for Sagar's ICSE/ISC exams and class tests
-% Copyright (c) 2025 Sagar Tamhankar
-% MIT License – see LICENSE file in repository
+% Copyright (c) 2025-2026 Sagar Tamhankar
+% MIT License -- see LICENSE file in repository
 % Repository: https://github.com/sagart23/latex-styles-sagar.git
-% --------------------------------------------------
-
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sagar-exam-core}[2025/11/23 v1.1 Sagar exam core style]
-
-% --------------------------------------------------
-% Core encoding & fonts
-% --------------------------------------------------
-\RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
-
-% --------------------------------------------------
-% Typography & microtype
-% --------------------------------------------------
-\RequirePackage[final,babel=true]{microtype}
-\microtypesetup{
-    protrusion = true,
-    expansion  = true
-}
-\UseMicrotypeSet[protrusion]{basicmath}
-
-% --------------------------------------------------
-% Spacing package (for \doublespacing, \onehalfspacing)
-% --------------------------------------------------
-\RequirePackage{setspace}
-
-% --------------------------------------------------
-% Exam-specific geometry
-% --------------------------------------------------
-\RequirePackage[
-    left        = 2cm,
-    right       = 2cm,
-    top         = 2.5cm,
-    bottom      = 2.5cm,
-    headheight  = 25pt,
-    headsep     = 0.8cm,
-    footskip    = 0.8cm
-]{geometry}
-
-% --------------------------------------------------
-% FIXED: Now properly loads tcolorbox
-% (Colors are inherited from sagar-boxes.sty)
-% --------------------------------------------------
-\RequirePackage[most,breakable]{tcolorbox}
-\tcbuselibrary{skins}
-% --------------------------------------------------
-% BASIC TABLE SUPPORT FOR EXAMS
-% --------------------------------------------------
-\RequirePackage{booktabs}   % clean horizontal lines
-\RequirePackage{array}      % better column control
-% --------------------------------------------------
-% Exam class customizations (for exam.cls)
-% --------------------------------------------------
-% Professional question formatting
-\makeatletter
-\@ifclassloaded{exam}{
-    \renewcommand{\questionlabel}{\sffamily\bfseries Q.\thequestion}
-    \renewcommand{\partlabel}{\sffamily\bfseries(\thepartno)}
-    \renewcommand{\subpartlabel}{\sffamily\bfseries\thesubpart.}
-    
-    \pointsdroppedatright
-    \marksnotpoints
-    \pointformat{\sffamily\bfseries[\themarginpoints]}
-    \setlength{\rightpointsmargin}{2.5cm}
-}{}
-\makeatother
-
-% --------------------------------------------------
-% Notes:
-% - Colors are defined in sagar-boxes.sty (loaded first)
-% - Watermark settings left to document preamble
-% - Headers/footers configured per-document
-% - tcolorbox environments for exams should be defined
-%   in sagar-exam-extended.sty to keep this core lean
 %
-% End of sagar-exam-core.sty
+% Option:  lean   only the exam.cls formatting -- no geometry, no tcolorbox
+%                 (this is what exam-minimal uses)
 % --------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{sagar-exam-core}[2026/11/07 v2.0 Sagar exam core style]
+
+\newif\ifsagar@lean
+\DeclareOption{lean}{\sagar@leantrue}
+\ProcessOptions\relax
+
+\RequirePackage{sagar-base}      % fonts, microtype, setspace, tables, multicol, \rupee
+
+\ifsagar@lean\else
+  \RequirePackage{geometry}
+  \geometry{
+    left       = 2cm,
+    right      = 2cm,
+    top        = 2.5cm,
+    bottom     = 2.5cm,
+    headheight = 25pt,
+    headsep    = 0.8cm,
+    footskip   = 0.8cm
+  }
+  \RequirePackage[most,breakable]{tcolorbox}   % boxes for sagar-exam-extended
+\fi
+
+% --------------------------------------------------
+% exam.cls customisations (only when the exam class is in use)
+% --------------------------------------------------
+\@ifclassloaded{exam}{%
+  \renewcommand{\questionlabel}{\sffamily\bfseries Q.\thequestion}
+  \renewcommand{\partlabel}{\sffamily\bfseries(\thepartno)}
+  \renewcommand{\subpartlabel}{\sffamily\bfseries\thesubpart.}
+
+  \pointsdroppedatright
+  \marksnotpoints
+  \pointformat{\sffamily\bfseries[\themarginpoints]}
+  \setlength{\rightpointsmargin}{2.5cm}
+}{}
+
+% Watermarks, headers and footers stay in the document preamble.
 \endinput
