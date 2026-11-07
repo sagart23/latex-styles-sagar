@@ -1,7 +1,47 @@
-% sagar-graphics-core.sty -- compatibility shim (old name of sagar-graphics-tikz-core)
+% sagar-graphics-tikz-core.sty
+% Essential graphics for geometry diagrams and calculus graphs
+% Copyright (c) 2025-2026 Sagar Tamhankar
+% MIT License -- see LICENSE file in repository
+% Repository: https://github.com/sagart23/latex-styles-sagar.git
+%
+% Option:  noplots   skip pgfplots / pgfplotstable (faster; used by exam-minimal)
+% ------------------------------------------------------
+
 \NeedsTeXFormat{LaTeX2e}[2022-06-01]
-\ProvidesPackage{sagar-graphics-core}[2026/11/07 v2.0 compat shim -> sagar-graphics-tikz-core]
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{sagar-graphics-tikz-core}}
+\ProvidesPackage{sagar-graphics-tikz-core}[2026/11/07 v2.0 Core graphics for math/physics]
+
+\newif\ifsagar@plots \sagar@plotstrue
+\DeclareOption{noplots}{\sagar@plotsfalse}
 \ProcessOptions\relax
-\RequirePackage{sagar-graphics-tikz-core}
+
+\RequirePackage{sagar-base}
+
+% ------------------------------------------------------
+% TikZ + geometry
+% ------------------------------------------------------
+\RequirePackage{tikz}
+\RequirePackage{tkz-euclide}          % geometry diagrams
+
+\usetikzlibrary{
+  arrows.meta,                % modern arrow tips
+  calc,                       % coordinate arithmetic
+  angles, quotes,             % angle marking and "label" syntax
+  shapes.geometric,           % polygons etc.
+  positioning,                % above=of, right=of, ...
+  patterns,                   % hatching / fill patterns
+  intersections,              % named-path intersections
+  decorations.pathreplacing   % braces / measurement marks
+}
+\tikzset{>=Stealth}           % default arrow tip
+
+% ------------------------------------------------------
+% Function plots (calculus, area under curves)
+% ------------------------------------------------------
+\ifsagar@plots
+  \RequirePackage{pgfplots}
+  \RequirePackage{pgfplotstable}
+  \pgfplotsset{compat=1.18}
+  \usepgfplotslibrary{fillbetween}
+\fi
+
 \endinput
