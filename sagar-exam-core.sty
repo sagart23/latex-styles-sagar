@@ -10,7 +10,7 @@
 % --------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[2022-06-01]
-\ProvidesPackage{sagar-exam-core}[2026/11/07 v2.0 Sagar exam core style]
+\ProvidesPackage{sagar-exam-core}[2026/11/08 v2.1 Sagar exam core style]
 
 \newif\ifsagar@lean
 \DeclareOption{lean}{\sagar@leantrue}
@@ -44,6 +44,12 @@
   \marksnotpoints
   \pointformat{\sffamily\bfseries[\themarginpoints]}
   \setlength{\rightpointsmargin}{2.5cm}
+
+  % \mcq{question}{A}{B}{C}{D}  -- one multiple-choice sub-part (inside \begin{parts})
+  \NewDocumentCommand{\mcq}{m m m m m}{%
+    \part #1
+    \begin{oneparchoices}\choice #2 \choice #3 \choice #4 \choice #5\end{oneparchoices}%
+  }
 }{}
 
 % Watermarks, headers and footers stay in the document preamble.
