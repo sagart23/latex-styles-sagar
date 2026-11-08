@@ -36,6 +36,9 @@
 % exam.cls customisations (only when the exam class is in use)
 % --------------------------------------------------
 \@ifclassloaded{exam}{%
+  % exam's \choice counter restarts in every list; hyperref would warn about duplicate
+  % anchors "choice.1" ... Naming anchors by internal counter avoids that.
+  \PassOptionsToPackage{hypertexnames=false}{hyperref}
   \renewcommand{\questionlabel}{\sffamily\bfseries Q.\thequestion}
   \renewcommand{\partlabel}{\sffamily\bfseries(\thepartno)}
   \renewcommand{\subpartlabel}{\sffamily\bfseries\thesubpart.}
@@ -44,12 +47,6 @@
   \marksnotpoints
   \pointformat{\sffamily\bfseries[\themarginpoints]}
   \setlength{\rightpointsmargin}{2.5cm}
-
-  % \mcq{question}{A}{B}{C}{D}  -- one multiple-choice sub-part (inside \begin{parts})
-  \NewDocumentCommand{\mcq}{m m m m m}{%
-    \part #1
-    \begin{oneparchoices}\choice #2 \choice #3 \choice #4 \choice #5\end{oneparchoices}%
-  }
 }{}
 
 % Watermarks, headers and footers stay in the document preamble.
