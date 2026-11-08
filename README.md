@@ -1,4 +1,4 @@
-# Sagar LaTeX Styles — v2.0
+# Sagar LaTeX Styles — v2.1
 
 Custom `.sty` / `.cls` files for ICSE/ISC question papers, notes and worksheets.
 **All v1.x file names and environment names still work.** Existing documents should compile unchanged.
@@ -11,13 +11,14 @@ Requires TeX Live / MiKTeX **2022 or newer** (siunitx v3, LaTeX kernel 2022). Wo
 
 | File | Purpose | Loads |
 |---|---|---|
-| `sagar-base.sty` **(new)** | Fonts, microtype, setspace, colour palette, graphicx, `multicol`, `multirow`, table tools, `\rupee`. The one place shared things live. | — |
+| `sagar-base.sty` **(new)** | Fonts, microtype, setspace, colour palette, graphicx, `multicol`, `multirow`, `enumitem`, table tools, `\rupee`. The one place shared things live. | — |
 | `sagar-math.sty` | amsmath, mathtools, siunitx, `\cosec`, `\bvec` (option `derivs` adds `\dv \ddv \pdv`) | base |
 | `sagar-graphics-tikz-core.sty` | TikZ, tkz-euclide, pgfplots (option `noplots` skips pgfplots) | base |
 | `sagar-graphics-extended.sty` | circuitikz, statistics plots, decorations. **Fixed** (v1 required a file that did not exist) | tikz-core |
 | `sagar-boxes.sty` | All coloured boxes + `\highlight`, `\emphred`, … Make new boxes in one line | base |
 | `sagar-article-core.sty` | Notes layout: spacing, margins, todonotes (option `todos`), QR codes | base |
-| `sagar-exam-core.sty` | Exam margins + `exam.cls` labels and marks (option `lean`) | base |
+| `sagar-exam-core.sty` | Exam margins + `exam.cls` labels and marks; `\mcq{question}{A}{B}{C}{D}` shortcut (option `lean`) | base |
+| `sagar-fonts.sty` **(new)** | Libertinus fonts for XeLaTeX/LuaLaTeX; does nothing under pdfLaTeX, so every template can load it (option `oldstyle`) | base |
 | `sagar-exam-extended.sty` | Header / instructions / section / question / grade-table boxes | exam-core, boxes |
 | `sagar-notes.sty` + `sagar-notes.cls` | Headers/footers, section styling, teacher/student mode; class = article + everything + hyperref | all of the above |
 | `exam-minimal.sty` | Lean exam preamble = base + tikz-core (no plots) + exam-core (lean) | |
@@ -28,6 +29,7 @@ sagar-base
  ├─ sagar-math
  ├─ sagar-graphics-tikz-core ── sagar-graphics-extended
  ├─ sagar-boxes
+ ├─ sagar-fonts  (load after sagar-math)
  ├─ sagar-article-core
  ├─ sagar-exam-core ── sagar-exam-extended (also loads boxes)
  └─ sagar-notes.sty ── sagar-notes.cls
@@ -144,6 +146,11 @@ Habits that avoid surprises:
 - `\maketitle` page had only a bare page number → now "Page 1 of N".
 - `sagar-article-core` + `sagar-exam-core` in one document gave `Option clash for package geometry` → now set via `\geometry{}`.
 
+**Added in v2.1** (found while reviewing the templates)
+- `enumitem` now loads everywhere. Without it `\begin{itemize}[leftmargin=0pt]` printed the option text as body text in exam papers.
+- `\mcq{question}{A}{B}{C}{D}` for exam papers (one line per multiple-choice sub-part).
+- `sagar-fonts.sty`: one place for the Libertinus setup that used to be copy-pasted into the `*Lua` templates.
+
 **Modernised**
 - `\NewTColorBox` / `\NewDocumentCommand`; engine-aware fonts (`iftex`); `sectsty` → `titlesec` (old `\sectionfont` etc. still work); `hyperref` + `pdfusetitle`; `\rupee` falls back to "Rs." with a warning if `tfrupee` is missing; `\bvec` no longer errors if you define your own.
 
@@ -166,6 +173,8 @@ Habits that avoid surprises:
 | `Option clash for package geometry/xcolor/tcolorbox` | Use `\geometry{…}` / `\PassOptionsToPackage` instead of a second `\usepackage[…]`. |
 | `Environment axis undefined` after `exam-minimal` | `exam-minimal` skips pgfplots on purpose; use `sagar-graphics-tikz-core` **before** it (or add `\usepackage{pgfplots}`). |
 | `Page 1 of ??` | Compile twice (LastPage needs a second run). |
+| `unicode-math Warning: I'm going to overwrite the following commands` (Lua/XeLaTeX) | Harmless. unicode-math replaces some `amssymb` commands with the font's own. |
+| `sagar-fonts Warning: Font "Libertinus Serif" not found` | Install Libertinus (or set `\newcommand{\sagarserif}{...}` before loading); Latin Modern is used meanwhile. |
 
 ---
 
