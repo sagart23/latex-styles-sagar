@@ -1,0 +1,46 @@
+% sagar-fonts.sty
+% Libertinus fonts for XeLaTeX / LuaLaTeX.  Does nothing under pdfLaTeX
+% (which keeps Latin Modern), so it is safe to load in every template.
+% Copyright (c) 2026 Sagar Tamhankar -- MIT License
+%
+% Option:   oldstyle   old-style (text) figures in body text. Default: lining
+%                      figures, which suit exam papers and maths.
+% Override: define BEFORE loading, e.g.
+%             \newcommand{\sagarserif}{EB Garamond}
+%             \newcommand{\sagarmathfont}{Garamond-Math.otf}
+% Load AFTER sagar-math (unicode-math must come after amsmath/mathtools).
+% If a font is not installed, a warning is printed and Latin Modern is kept.
+% ------------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{sagar-fonts}[2026/11/08 v2.1 Libertinus for Xe/LuaLaTeX]
+
+\newcommand*{\sagar@numbers}{Lining}
+\DeclareOption{oldstyle}{\renewcommand*{\sagar@numbers}{OldStyle}}
+\ProcessOptions\relax
+
+\RequirePackage{sagar-base}
+\RequirePackage{iftex}
+
+\providecommand*{\sagarserif}{Libertinus Serif}
+\providecommand*{\sagarsans}{Libertinus Sans}
+\providecommand*{\sagarmathfont}{Libertinus Math}
+\providecommand*{\sagarmono}{JetBrains Mono}
+
+\ifPDFTeX
+  % pdfLaTeX: nothing to do (Latin Modern comes from sagar-base)
+\else
+  \expandafter\IfFontExistsTF\expandafter{\sagarserif}{%
+    \RequirePackage{amsmath}\RequirePackage{mathtools}  % must precede unicode-math
+    \RequirePackage{unicode-math}
+    \setmainfont{\sagarserif}[Ligatures=TeX, Numbers=\sagar@numbers]
+    \setsansfont{\sagarsans}[Ligatures=TeX, Scale=MatchLowercase]
+    \setmathfont{\sagarmathfont}
+    \expandafter\IfFontExistsTF\expandafter{\sagarmono}%
+      {\setmonofont{\sagarmono}[Scale=0.9]}{}
+  }{%
+    \PackageWarningNoLine{sagar-fonts}{Font "\sagarserif" not found; keeping Latin Modern}%
+  }
+\fi
+
+\endinput
